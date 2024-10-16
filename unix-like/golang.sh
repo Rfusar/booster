@@ -1,9 +1,8 @@
 #!/bin/bash
 path=$(pwd)
-cd /usr/lib 
+golang="/usr/lib/GOLANG"
+mkdir -p $golang && cd $golang
 
-mkdir GOLANG
-cd GOLANG
 wget https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
 LIB=$(ls | head -n 1)
 tar -xzvf $LIB 
