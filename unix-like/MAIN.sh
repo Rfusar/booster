@@ -24,10 +24,12 @@ for pkg in "${args[@]}"; do
     echo "Installando $pkg..."
 
     # Verifica quale pacchetto installare e chiama lo script corrispondente
-    if [ "$pkg" == "nvim" ]; then 
-        ./nvim.sh
-    elif [ "$pkg" == "go" ]; then 
+    if [ "$pkg" == "go" ]; then 
         ./golang.sh
+
+    elif [ "$pkg" == "nvim" ]; then 
+        ./nvim.sh
+        cd ~/.config/nvim
     else 
         echo "Pacchetto $pkg non supportato."
     fi
