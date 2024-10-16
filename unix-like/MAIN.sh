@@ -11,12 +11,12 @@ LIBS=("nvim" "go")
 
 # Controlla se sono stati passati argomenti
 if [ "$#" -eq 0 ]; then
-    echo "Nessun pacchetto specificato. Utilizza i seguenti pacchetti di default:"
-    echo "${LIBS[@]}"
-    args=("${LIBS[@]}")  # Usa i pacchetti di default
-else
-    args=("$@")  # Usa gli argomenti passati allo script
+    echo "Nessun pacchetto specificato. Solo aggiornamento eseguito."
+    exit 0  # Esci dallo script senza eseguire ulteriori azioni
 fi
+
+# Se ci sono argomenti, usa quelli passati allo script
+args=("$@")
 
 # Itera attraverso i pacchetti da installare
 for pkg in "${args[@]}"; do
@@ -24,10 +24,11 @@ for pkg in "${args[@]}"; do
     echo "Installando $pkg..."
 
     # Verifica quale pacchetto installare e chiama lo script corrispondente
-    if [ "$pkg" == "nvim" ]; then ./nvim.sh
-    elif [ "$pkg" == "go" ]; then ./golang.sh
-    
-    else echo "Pacchetto $pkg non supportato."
+    if [ "$pkg" == "nvim" ]; then 
+        ./nvim.sh
+    elif [ "$pkg" == "go" ]; then 
+        ./golang.sh
+    else 
+        echo "Pacchetto $pkg non supportato."
     fi
-    
 done

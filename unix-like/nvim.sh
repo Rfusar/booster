@@ -1,10 +1,9 @@
 #!/bin/bash
 path=$(pwd)
-mkdir -p $nvim && cd $nvim
-
-apt install -y neovim
-
 nvim="~/.config/nvim"
+
+mkdir -p $nvim && cd $nvim
+apt install -y neovim
 
 wget "https://github.com/Rfusar/editorConfig/archive/refs/heads/master.zip"
 unzip master.zip
