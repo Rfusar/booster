@@ -3,11 +3,11 @@
 # SCARICA I PACCHETTI CHE TI SERVONO
 # Usa i parametri per i download
 
-# Dichiarazione di un array di librerie
-apt update
-update upgrade
+# Aggiorna e aggiorna i pacchetti del sistema
+apt update && apt upgrade -y
 
-LIBS=("nvim" "go")  # Rimuovere le virgole per gli elementi dell'array
+# Dichiarazione di un array di librerie
+LIBS=("nvim" "go")
 
 # Controlla se sono stati passati argomenti
 if [ "$#" -eq 0 ]; then
@@ -15,15 +15,19 @@ if [ "$#" -eq 0 ]; then
     echo "${LIBS[@]}"
     args=("${LIBS[@]}")  # Usa i pacchetti di default
 else
-    args=("$@")  # Usa gli argomenti passati dallo script
+    args=("$@")  # Usa gli argomenti passati allo script
 fi
 
 # Itera attraverso i pacchetti da installare
 for pkg in "${args[@]}"; do
     clear
-    echo "Installando $pkg...\n"
+    echo "Installando $pkg..."
 
-    if pkg=="nvim"; then .\nvim.sh
+    # Verifica quale pacchetto installare e chiama lo script corrispondente
+    if [ "$pkg" == "nvim" ]; then ./nvim.sh
+    elif [ "$pkg" == "go" ]; then ./golang.sh
     
+    else echo "Pacchetto $pkg non supportato."
     fi
+    
 done
