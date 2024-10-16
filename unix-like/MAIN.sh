@@ -4,7 +4,6 @@
 # Usa i parametri per i download
 
 # Aggiorna e aggiorna i pacchetti del sistema
-apt update && apt upgrade -y
 
 # Dichiarazione di un array di librerie
 LIBS=("nvim" "go")
@@ -24,13 +23,19 @@ for pkg in "${args[@]}"; do
     echo "Installando $pkg..."
 
     # Verifica quale pacchetto installare e chiama lo script corrispondente
-    if [ "$pkg" == "go" ]; then 
-        ./golang.sh
+    if [ "$pkg" == "update" ]; then
+        apt update && apt upgrade -y
+
+    elif [ "$pkg" == "go" ]; then 
+        . ./golang.sh
 
     elif [ "$pkg" == "nvim" ]; then 
-        ./nvim.sh
-        cd ~/.config/nvim
+        . ./nvim.sh
+        cd /root/.config/nvim
+        return
+
     else 
         echo "Pacchetto $pkg non supportato."
     fi
+    cd /home
 done
