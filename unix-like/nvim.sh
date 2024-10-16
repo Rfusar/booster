@@ -8,10 +8,12 @@ apt install -y neovim
 
 wget "https://github.com/Rfusar/editorConfig/archive/refs/heads/master.zip"
 unzip master.zip
-mv editoConfig-master/* .
+mv editorConfig-master/* .
 rm -drf master.zip editorConfig-master/
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+if [ ! -d "~/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+if
 
 
 
